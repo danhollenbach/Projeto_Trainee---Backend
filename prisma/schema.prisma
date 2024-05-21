@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url = "file:./database.db" 
 }
 
 
@@ -13,6 +13,69 @@ model Users{
   username String @unique
   email String @unique
   name String 
-  age Int 
+  age Int? 
   password String
+  departamento String?
+  curso String
+  profilephoto String
+  createdAt DateTime @default(now())
+  updadteAt DateTime @updatedAt
+  coments Comentarios[]
+  avaliacao Avaliacao[]
 }
+model Avaliacao{
+  id Int @id @default(autoincrement())
+  user Users @relation(fields: [userId], references: [id])
+  userId Int 
+  professorId Int 
+  disciplinaId Int 
+  conteudo String
+  createdAt DateTime @default(now())
+  uptadeAt DateTime @updatedAt
+  coments Comentarios[]
+}
+
+model Comentarios{
+  id Int @id @default(autoincrement())
+  user Users @relation(fields: [userId], references: [id])
+  userId Int
+  avaliacao Avaliacao @relation(fields: [avaliacaoId], references: [id])
+  avaliacaoId Int
+  conteudo String 
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model Professor{
+  id Int @id @default(autoincrement())
+  name String 
+  //disciplina Disciplina @relation(fields: [disciplinaId], references: [id])
+  disciplinaId Int 
+  departamento String
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  disciplinacomprof Disciplina[]
+  //turmas Turmas[] adicionar o model de turmas?
+}
+
+model Disciplina{
+  id Int @id @default(autoincrement())
+  name String
+  //professor Professor @relation(fields: [professorId], references: [id])
+  professorId Int
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  profcomdisciplina Professor[]
+}
+
+//model Turma {
+//id Int @id @default(autoincrement())
+//nome String
+// Adicionamos essa coluna como no caso 1 para 1.
+//professor Professor @relation(fields: [professorId], references: [id])
+// Adicionamos uma coluna da FK
+//professorId Int
+//}
+
+//profs pra disciplina n:n?
+
