@@ -4,7 +4,7 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [UserModule, PrismaModule],
-  controllers: [  ],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}

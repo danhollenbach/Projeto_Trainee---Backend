@@ -13,11 +13,10 @@ model Users{
   username String @unique
   email String @unique
   name String 
-  age Int? 
   password String
   departamento String?
   curso String
-  profilephoto String
+  profilephoto String?
   createdAt DateTime @default(now())
   updadteAt DateTime @updatedAt
   coments Comentarios[]
@@ -25,7 +24,7 @@ model Users{
 }
 model Avaliacao{
   id Int @id @default(autoincrement())
-  user Users @relation(fields: [userId], references: [id])
+  autor Users @relation(fields: [userId], references: [id])
   userId Int 
   professor Professor @relation(fields: [professorId], references: [id])
   professorId Int 
@@ -80,5 +79,8 @@ model Disciplina{
 //}
 
 //profs pra disciplina n:n?
+
+//model Tags  ?
+
 
 
