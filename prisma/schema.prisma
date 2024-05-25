@@ -2,6 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator crud_generator {
+  provider = "prisma-generator-nestjs-crud"
+  output   = "../src"
+}
 datasource db {
   provider = "sqlite"
   url = "file:./database.db" 
@@ -27,7 +31,7 @@ model Avaliacao{
   autor Users @relation(fields: [userId], references: [id])
   userId Int 
   professor Professor @relation(fields: [professorId], references: [id])
-  professorId Int 
+  professorId Int
   disciplinaId Int 
   conteudo String
   createdAt DateTime @default(now())
