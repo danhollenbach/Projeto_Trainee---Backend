@@ -1,4 +1,4 @@
-import { IsNumber, IsString, IsEmail } from "class-validator";
+import { IsString, IsEmail } from "class-validator";
 export class UpdateUserDto {
     @IsString({message: ' usuário tem que ser uma string '})
     username: string;

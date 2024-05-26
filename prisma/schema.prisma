@@ -52,15 +52,12 @@ model Comentarios{
 
 model Professor{
   id Int @id @default(autoincrement())
-  name String 
-  //disciplina Disciplina @relation(fields: [disciplinaId], references: [id])
-  disciplinaId Int 
+  name String  
   departamento String
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
   disciplinacomprof Disciplina[]
   avaliacao Avaliacao[]
-  //turmas Turmas[] adicionar o model de turmas?
 }
 
 model Disciplina{
@@ -72,19 +69,6 @@ model Disciplina{
   updateAt DateTime @updatedAt
   profcomdisciplina Professor[]
 }
-
-//model Turma {
-//id Int @id @default(autoincrement())
-//nome String
-// Adicionamos essa coluna como no caso 1 para 1.
-//professor Professor @relation(fields: [professorId], references: [id])
-// Adicionamos uma coluna da FK
-//professorId Int
-//}
-
-//profs pra disciplina n:n?
-
-//model Tags  ?
 
 
 

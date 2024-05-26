@@ -1,4 +1,4 @@
-import { IsNumber, IsString, MinLength, IsEmail, IsNotEmpty, IsOptional } from "class-validator";
+import { IsString, MinLength, IsEmail, IsNotEmpty, IsOptional } from "class-validator";
 export class CreateUserDto {
     @IsString({message: ' usuário tem que ser uma string '})
     @IsNotEmpty({message: ' o parametro nao pode ser vazio '})
