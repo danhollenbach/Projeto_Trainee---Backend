@@ -63,8 +63,6 @@ model Professor{
 model Disciplina{
   id Int @id @default(autoincrement())
   name String
-  //professor Professor @relation(fields: [professorId], references: [id])
-  professorId Int
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
   profcomdisciplina Professor[]
