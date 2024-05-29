@@ -11,7 +11,10 @@ export class ComentariosService {
 
     async create(data: CreateComentariosDto){
         const comentarios = await this.prisma.comentarios.create({
-            data: data, 
+            data: {
+                userId: data.userId,
+                
+            }
         });
         return comentarios;
     }

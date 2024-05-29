@@ -1,8 +1,8 @@
 import { IsString, IsNotEmpty } from "class-validator";
-export class CreateUserDto {
+export class CreateComentariosDto {
     @IsString({message: ' usuário tem que ser uma string '})
     @IsNotEmpty({message: ' o parametro nao pode ser vazio '})
-    user: string;
+    userId: number;
     @IsString()
     @IsNotEmpty({message: ' o parametro nao pode ser vazio '}) 
     avaliacao: string;

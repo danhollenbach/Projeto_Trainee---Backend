@@ -1,5 +1,5 @@
 import { IsString, MinLength, IsEmail, IsNotEmpty, IsOptional } from "class-validator";
-export class CreateUserDto {
+export class CreateProfessorDto {
     @IsString()
     @IsNotEmpty({message: ' o parametro nao pode ser vazio '}) 
     name: string;

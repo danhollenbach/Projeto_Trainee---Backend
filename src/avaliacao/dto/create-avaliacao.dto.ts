@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty } from "class-validator";
-export class CreateUserDto {
+export class CreateAvaliacaoDto {
     @IsString({message: ' o autor tem que ser uma string '})
     @IsNotEmpty({message: ' o parametro nao pode ser vazio '})
     autor: string;  

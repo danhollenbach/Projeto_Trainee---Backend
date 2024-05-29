@@ -5,4 +5,6 @@ export class CreateDisciplinaDto extends PickType(DisciplinaEntity, [
   'name',
   'professorId',
   'updateAt',
-]) {}
+]) {
+  
+}
