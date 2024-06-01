@@ -13,6 +13,7 @@ export class ComentariosService {
         const comentarios = await this.prisma.comentarios.create({
             data: {
                 userId: data.userId,
+                connect: {id }
                 
             }
         });
