@@ -13,9 +13,8 @@ export class ComentariosService {
         const comentarios = await this.prisma.comentarios.create({
             data: {
                 userId: data.userId,
-                
-                
-                
+                avaliacaoId: data.avaliacaoId,
+                conteudo: data.conteudo, 
             }
         });
         return comentarios;
@@ -41,7 +40,10 @@ export class ComentariosService {
     async update(id: number, data: UpdateComentariosDto){
         return await this.prisma.comentarios.update({
             where: {id:id},
-            data: data,
-        })
+            data:{
+                 avaliacaoId: data.avaliacaoId,
+                 conteudo: data.conteudo,
+            }})
+            
     }
 }
