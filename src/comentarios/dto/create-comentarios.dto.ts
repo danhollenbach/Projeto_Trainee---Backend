@@ -1,13 +1,12 @@
-import { IsString, IsNotEmpty } from "class-validator";
+import { IsString, IsNotEmpty, IsInt } from "class-validator";
 export class CreateComentariosDto {
-    @IsString({message: ' usuário tem que ser uma string '})
+    @IsInt({message: ' usuário tem que ser uma numero '})
     @IsNotEmpty({message: ' o parametro nao pode ser vazio '})
     userId: number;
-    @IsString()
-    @IsNotEmpty({message: ' o parametro nao pode ser vazio '}) 
-    avaliacao: string;
-    @IsString()
+    @IsInt({message: 'tem que ser numero'})
+    @IsNotEmpty({message: 'nao pode estar vazio'})
+    avaliacaoId: number;
+    @IsString({message: ' tem que ser texto '})
     @IsNotEmpty({message: ' o parametro nao pode ser vazio '})
     conteudo: string;
-    
 }
