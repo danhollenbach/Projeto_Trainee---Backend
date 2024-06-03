@@ -28,7 +28,7 @@ model Users{
 }
 model Avaliacao{
   id Int @id @default(autoincrement())
-  autor Users @relation(fields: [userId], references: [id])
+  author Users @relation(fields: [userId], references: [id])
   userId Int 
   professor Professor @relation(fields: [professorId], references: [id])
   professorId Int
@@ -50,6 +50,14 @@ model Comentarios{
   updateAt DateTime @updatedAt
 }
 
+model Disciplina{
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  profcomdisciplina Professor[]
+}
+
 model Professor{
   id Int @id @default(autoincrement())
   name String  
@@ -60,13 +68,6 @@ model Professor{
   avaliacao Avaliacao[]
 }
 
-model Disciplina{
-  id Int @id @default(autoincrement())
-  name String
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
-  profcomdisciplina Professor[]
-}
 
 
 
