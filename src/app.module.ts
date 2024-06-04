@@ -10,14 +10,14 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
-    UsersModule,
-    PrismaModule,
-    ComentariosModule,
-    AuthModule,
-    JwtModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    PrismaModule,
+    UsersModule,
+    ComentariosModule,
+    AuthModule,
+    JwtModule,
   ],
   controllers: [AppController],
   providers: [AppService],
