@@ -1,5 +1,5 @@
-export class UserPayload {
-  sub: string;
+export class UsersPayload {
+  sub: number;
   email: string;
   iat?: number;
   exp?: number;
