@@ -11,21 +11,6 @@ datasource db {
   url = "file:./database.db" 
 }
 
-
-model Users{
-  id Int @id @default(autoincrement())
-  username String @unique
-  email String @unique
-  name String 
-  password String
-  departamento String?
-  curso String
-  profilephoto String?
-  createdAt DateTime @default(now())
-  updadteAt DateTime @updatedAt
-  coments Comentarios[]
-  avaliacao Avaliacao[]
-}
 model Avaliacao{
   id Int @id @default(autoincrement())
   author Users @relation(fields: [userId], references: [id])
@@ -68,6 +53,20 @@ model Professor{
   avaliacao Avaliacao[]
 }
 
+model Users{
+  id Int @id @default(autoincrement())
+  username String @unique
+  email String @unique
+  name String 
+  password String
+  departamento String?
+  curso String
+  profilephoto String?
+  createdAt DateTime @default(now())
+  updadteAt DateTime @updatedAt
+  coments Comentarios[]
+  avaliacao Avaliacao[]
+}
 
 
 
