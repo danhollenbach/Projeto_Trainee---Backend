@@ -6,67 +6,65 @@ generator crud_generator {
   provider = "prisma-generator-nestjs-crud"
   output   = "../src"
 }
+
 datasource db {
   provider = "sqlite"
-  url = "file:./database.db" 
+  url      = "file:./database.db"
 }
 
-model Avaliacao{
-  id Int @id @default(autoincrement())
-  author Users @relation(fields: [userId], references: [id])
-  userId Int 
-  professor Professor @relation(fields: [professorId], references: [id])
-  professorId Int
-  disciplinaId Int 
-  conteudo String
-  createdAt DateTime @default(now())
-  uptadeAt DateTime @updatedAt
-  coments Comentarios[]
+model Avaliacao {
+  id           Int           @id @default(autoincrement())
+  author       Users         @relation(fields: [userId], references: [id])
+  userId       Int
+  professor    Professor     @relation(fields: [professorId], references: [id])
+  professorId  Int
+  disciplinaId Int
+  conteudo     String
+  createdAt    DateTime      @default(now())
+  uptadeAt     DateTime      @updatedAt
+  coments      Comentarios[]
 }
 
-model Comentarios{
-  id Int @id @default(autoincrement())
-  user Users @relation(fields: [userId], references: [id])
-  userId Int
-  avaliacao Avaliacao @relation(fields: [avaliacaoId], references: [id])
+model Comentarios {
+  id          Int       @id @default(autoincrement())
+  user        Users     @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  userId      Int
+  avaliacao   Avaliacao @relation(fields: [avaliacaoId], references: [id])
   avaliacaoId Int
-  conteudo String 
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+  conteudo    String
+  createdAt   DateTime  @default(now())
+  updateAt    DateTime  @updatedAt
 }
 
-model Disciplina{
-  id Int @id @default(autoincrement())
-  name String
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+model Disciplina {
+  id                Int         @id @default(autoincrement())
+  name              String
+  createdAt         DateTime    @default(now())
+  updateAt          DateTime    @updatedAt
   profcomdisciplina Professor[]
 }
 
-model Professor{
-  id Int @id @default(autoincrement())
-  name String  
-  departamento String
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+model Professor {
+  id                Int          @id @default(autoincrement())
+  name              String
+  departamento      String
+  createdAt         DateTime     @default(now())
+  updateAt          DateTime     @updatedAt
   disciplinacomprof Disciplina[]
-  avaliacao Avaliacao[]
+  avaliacao         Avaliacao[]
 }
 
-model Users{
-  id Int @id @default(autoincrement())
-  username String @unique
-  email String @unique
-  name String 
-  password String
+model Users {
+  id           Int           @id @default(autoincrement())
+  username     String        @unique
+  email        String        @unique
+  name         String
+  password     String
   departamento String?
-  curso String
+  curso        String
   profilephoto String?
-  createdAt DateTime @default(now())
-  updadteAt DateTime @updatedAt
-  coments Comentarios[]
-  avaliacao Avaliacao[]
+  createdAt    DateTime      @default(now())
+  updadteAt    DateTime      @updatedAt
+  coments      Comentarios[]
+  avaliacao    Avaliacao[]
 }
-
-
-
