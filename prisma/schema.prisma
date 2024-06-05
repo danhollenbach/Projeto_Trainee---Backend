@@ -14,10 +14,11 @@ datasource db {
 
 model Avaliacao {
   id           Int           @id @default(autoincrement())
-  author       Users         @relation(fields: [userId], references: [id])
+  author       Users         @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   userId       Int
   professor    Professor     @relation(fields: [professorId], references: [id])
   professorId  Int
+  disciplina   Disciplina    @relation(fields: [disciplinaId], references: [id])
   disciplinaId Int
   conteudo     String
   createdAt    DateTime      @default(now())
@@ -42,6 +43,7 @@ model Disciplina {
   createdAt         DateTime    @default(now())
   updateAt          DateTime    @updatedAt
   profcomdisciplina Professor[]
+  Avaliacao         Avaliacao[]
 }
 
 model Professor {
