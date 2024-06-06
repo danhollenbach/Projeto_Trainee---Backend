@@ -1,12 +1,4 @@
-import { IsString, IsNotEmpty } from "class-validator";
 export class UpdateProfessorDto {
-    @IsString()
-    @IsNotEmpty({message: ' o parametro nao pode ser vazio '}) 
-    name: string;
-    @IsString({message: ' usuário tem que ser uma string '})
-    @IsNotEmpty({message: ' o parametro nao pode ser vazio '})
-    disciplina: string; 
-    @IsString()
-    departamento: string;
-    
+  name: string;
+  departamento: string;
 }
