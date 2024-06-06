@@ -9,8 +9,8 @@ export class ProfessorController {
   constructor(private readonly professorService: ProfessorService) {}
 
   @Post()
-  async create(@Body(ValidationPipe) professorData: CreateProfessorDto){
-    return await this.professorService.create(professorData);
+  create(@Body(ValidationPipe) professorData: CreateProfessorDto){
+    return this.professorService.create(professorData);
   }
 
   @Get()

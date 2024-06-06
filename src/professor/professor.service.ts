@@ -10,10 +10,9 @@ export class ProfessorService {
     ){}
 
     async create(data: CreateProfessorDto){
-        const professor = await this.prisma.professor.create({
+        return await this.prisma.professor.create({
             data: data, 
         });
-        return professor;
     }
 
 

@@ -8,6 +8,8 @@ import { UpdateUsersDto } from './dto/update-users.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 
+const prisma = new PrismaService()
+
 @Injectable()
 export class UsersService {
   constructor(private prismaService: PrismaService) {}
@@ -69,9 +71,15 @@ export class UsersService {
     return users;
   }
 
+  async updateName(id: number, newName: {name: string}){
+    return await prisma.users.update({
+      where: {id: id}, 
+      data: {username: newName.name}})
+  }
+
   async update(id: number, updateUsersDto: UpdateUsersDto) {
     const isValidId = await this.prismaService.users.findUnique({
-      where: { id },
+      where: { id : id },
     });
     if (!isValidId) {
       throw new NotFoundException('usuario nao encontrado');

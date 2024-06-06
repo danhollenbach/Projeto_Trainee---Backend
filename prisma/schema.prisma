@@ -52,7 +52,7 @@ model Professor {
   departamento      String
   createdAt         DateTime     @default(now())
   updateAt          DateTime     @updatedAt
-  disciplinacomprof Disciplina[]
+  disciplinacomprof Disciplina[] 
   avaliacao         Avaliacao[]
 }
 
