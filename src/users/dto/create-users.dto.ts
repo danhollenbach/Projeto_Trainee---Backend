@@ -1,13 +1,24 @@
-import { PickType } from '@nestjs/mapped-types';
-import { UsersEntity } from '../entities/users.entity';
-
-export class CreateUsersDto extends PickType(UsersEntity, [
-  'username',
-  'email',
-  'name',
-  'password',
-  'departamento',
-  'curso',
-  'profilephoto',
-  'updadteAt',
-]) {}
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+export class CreateUsersDto {
+  @IsString()
+  @IsOptional()
+  username: string;
+  @IsString()
+  @IsNotEmpty()
+  email: string;
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+  @IsString()
+  @IsOptional()
+  departamento: string;
+  @IsString()
+  @IsNotEmpty()
+  curso: string;
+  @IsString()
+  @IsOptional()
+  profilephoto: string;
+}

@@ -52,13 +52,13 @@ model Professor {
   departamento      String
   createdAt         DateTime     @default(now())
   updateAt          DateTime     @updatedAt
-  disciplinacomprof Disciplina[] 
+  disciplinacomprof Disciplina[]
   avaliacao         Avaliacao[]
 }
 
 model Users {
   id           Int           @id @default(autoincrement())
-  username     String        @unique
+  username     String?       @unique
   email        String        @unique
   name         String
   password     String

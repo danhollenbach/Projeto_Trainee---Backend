@@ -1,13 +1,4 @@
-import { PickType } from '@nestjs/mapped-types';
-import { UsersEntity } from '../entities/users.entity';
+import { PartialType, PickType } from '@nestjs/mapped-types';
+import { CreateUsersDto } from './create-users.dto';
 
-export class UpdateUsersDto extends PickType(UsersEntity, [
-  'username',
-  'email',
-  'name',
-  'password',
-  'departamento',
-  'curso',
-  'profilephoto',
-  'updadteAt',
-]) {}
+export class UpdateUsersDto extends PartialType(CreateUsersDto) {}

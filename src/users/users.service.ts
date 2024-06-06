@@ -8,7 +8,7 @@ import { UpdateUsersDto } from './dto/update-users.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 
-const prisma = new PrismaService()
+const prisma = new PrismaService();
 
 @Injectable()
 export class UsersService {
@@ -35,6 +35,7 @@ export class UsersService {
         id: true,
         username: true,
         email: true,
+        curso: true,
         coments: true,
         createdAt: true,
         updadteAt: true,
@@ -54,6 +55,7 @@ export class UsersService {
         id: true,
         username: true,
         email: true,
+        curso: true,
         coments: true,
         createdAt: true,
         updadteAt: true,
@@ -71,29 +73,38 @@ export class UsersService {
     return users;
   }
 
-  async updateName(id: number, newName: {name: string}){
-    return await prisma.users.update({
-      where: {id: id}, 
-      data: {username: newName.name}})
-  }
-
   async update(id: number, updateUsersDto: UpdateUsersDto) {
     const isValidId = await this.prismaService.users.findUnique({
-      where: { id : id },
+      where: { id: id },
     });
     if (!isValidId) {
       throw new NotFoundException('usuario nao encontrado');
     }
-
-    const hashedpassword = await bcrypt.hash(updateUsersDto.password, 10);
+    if (updateUsersDto.password) {
+      const hashedpassword = await bcrypt.hashSync(updateUsersDto.password, 10);
+      return await this.prismaService.users.update({
+        where: { id },
+        data: { ...updateUsersDto, password: hashedpassword },
+        select: {
+          id: true,
+          username: true,
+          email: true,
+          curso: true,
+          coments: true,
+          createdAt: true,
+          updadteAt: true,
+        },
+      });
+    }
 
     return await this.prismaService.users.update({
       where: { id },
-      data: { ...updateUsersDto, password: hashedpassword },
+      data: { ...updateUsersDto },
       select: {
         id: true,
         username: true,
         email: true,
+        curso: true,
         coments: true,
         createdAt: true,
         updadteAt: true,
@@ -114,6 +125,7 @@ export class UsersService {
         id: true,
         username: true,
         email: true,
+        curso: true,
         coments: true,
         createdAt: true,
         updadteAt: true,
