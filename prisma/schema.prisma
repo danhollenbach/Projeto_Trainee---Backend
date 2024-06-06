@@ -38,22 +38,24 @@ model Comentarios {
 }
 
 model Disciplina {
-  id                Int         @id @default(autoincrement())
-  name              String
-  createdAt         DateTime    @default(now())
-  updateAt          DateTime    @updatedAt
-  profcomdisciplina Professor[]
-  Avaliacao         Avaliacao[]
+  id          Int         @id @default(autoincrement())
+  name        String
+  createdAt   DateTime    @default(now())
+  updateAt    DateTime    @updatedAt
+  professorId Int
+  Avaliacao   Avaliacao[]
+  Professor   Professor   @relation("professordisciplina", fields: [professorId], references: [id])
 }
 
 model Professor {
-  id                Int          @id @default(autoincrement())
-  name              String
-  departamento      String
-  createdAt         DateTime     @default(now())
-  updateAt          DateTime     @updatedAt
-  disciplinacomprof Disciplina[]
-  avaliacao         Avaliacao[]
+  id           Int          @id @default(autoincrement())
+  name         String
+  departamento String
+  createdAt    DateTime     @default(now())
+  updateAt     DateTime     @updatedAt
+  disciplinaId Int
+  avaliacao    Avaliacao[]
+  disciplinas  Disciplina[] @relation("professordisciplina")
 }
 
 model Users {

@@ -1,8 +1,4 @@
-import { PickType } from '@nestjs/mapped-types';
-import { DisciplinaEntity } from '../entities/disciplina.entity';
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateDisciplinaDto } from './create-disciplina.dto';
 
-export class UpdateDisciplinaDto extends PickType(DisciplinaEntity, [
-  'name',
-  'professorId',
-  'updateAt',
-]) {}
+export class UpdateDisciplinaDto extends PartialType(CreateDisciplinaDto) {}
