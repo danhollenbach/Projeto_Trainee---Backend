@@ -23,7 +23,15 @@ export class UsersService {
       throw new ConflictException('Email ja cadastrado');
     }
 
-    const hashedpassword = await bcrypt.hash(createUsersDto.password, 10);
+    const existingUsername = await this.prismaService.users.findUnique({
+      where: { username: createUsersDto.username },
+    });
+
+    if (existingUsername) {
+      throw new ConflictException('username ja cadastrado');
+    }
+
+    const hashedpassword = await bcrypt.hashSync(createUsersDto.password, 10);
 
     return await this.prismaService.users.create({
       data: { ...createUsersDto, password: hashedpassword },
