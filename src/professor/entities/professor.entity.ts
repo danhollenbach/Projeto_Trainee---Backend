@@ -6,4 +6,5 @@ export class ProfessorEntity implements Professor {
   departamento: string;
   createdAt: Date;
   updateAt: Date;
+  disciplinaId: number;
 }

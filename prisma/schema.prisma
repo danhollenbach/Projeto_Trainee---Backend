@@ -37,9 +37,8 @@ model Disciplina {
   name        String
   createdAt   DateTime    @default(now())
   updateAt    DateTime    @updatedAt
-  professorId Int
   Avaliacao   Avaliacao[]
-  Professor   Professor   @relation("professordisciplina", fields: [professorId], references: [id])
+  Professor   Professor[]
 }
 
 model Professor {
@@ -50,7 +49,7 @@ model Professor {
   updateAt     DateTime     @updatedAt
   disciplinaId Int
   avaliacao    Avaliacao[]
-  disciplinas  Disciplina[] @relation("professordisciplina")
+  disciplinas  Disciplina @relation(fields: [disciplinaId], references: [id])
 }
 
 model Users {
