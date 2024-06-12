@@ -1,18 +1,29 @@
-import { Controller, Get, Post, Param, ValidationPipe, Body, ParseIntPipe, Delete, Patch } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  ValidationPipe,
+  Body,
+  ParseIntPipe,
+  Delete,
+  Patch,
+} from '@nestjs/common';
 import { ProfessorService } from './professor.service';
 import { CreateProfessorDto } from './dto/create-professor.dto';
 import { UpdateProfessorDto } from './dto/update-professor.dto';
-
+import { Public } from '../auth/decorators/IsPublic.decorador';
 
 @Controller('professor')
 export class ProfessorController {
   constructor(private readonly professorService: ProfessorService) {}
 
   @Post()
-  create(@Body(ValidationPipe) professorData: CreateProfessorDto){
+  create(@Body(ValidationPipe) professorData: CreateProfessorDto) {
     return this.professorService.create(professorData);
   }
 
+  @Public()
   @Get()
   async findAll() {
     return await this.professorService.findAll();
@@ -28,7 +39,10 @@ export class ProfessorController {
   }
 
   @Patch(':id')
-  async update(@Param('id', ParseIntPipe) id: number, @Body(ValidationPipe) data: UpdateProfessorDto) {
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body(ValidationPipe) data: UpdateProfessorDto,
+  ) {
     return await this.professorService.update(id, data);
   }
 }

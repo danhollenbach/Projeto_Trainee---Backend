@@ -15,6 +15,7 @@ import { CreateComentariosDto } from './dto/create-comentarios.dto';
 import { UpdateComentariosDto } from './dto/update-comentarios.dto';
 import { CurrentUser } from 'src/auth/decorators/CurrentUser.decorador';
 import { UsersPayload } from 'src/auth/token/usersPayloads';
+import { Public } from 'src/auth/decorators/IsPublic.decorador';
 
 @Controller('comentarios')
 export class ComentariosController {
@@ -32,10 +33,9 @@ export class ComentariosController {
       );
     }
     return await this.comentariosService.create(createComentariosDto);
-    // async create(@Body(ValidationPipe) comentariosData: CreateComentariosDto) {
-    //   return await this.comentariosService.create(comentariosData);
   }
 
+  @Public()
   @Get()
   async findAll() {
     return await this.comentariosService.findAll();

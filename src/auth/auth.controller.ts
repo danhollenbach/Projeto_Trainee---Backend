@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginRequestBody } from './dto/loginRequestBody.dto';
-import { AuthGuard } from './guards/auth-guards';
 import { Public } from '../auth/decorators/IsPublic.decorador';
 
 @Controller()
