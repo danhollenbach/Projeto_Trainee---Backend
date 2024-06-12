@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-
 import { Request } from 'express';
 import { IS_PUBLIC_KEY, Public } from '../decorators/IsPublic.decorador';
 import { Reflector } from '@nestjs/core';
@@ -25,7 +24,6 @@ export class AuthGuard implements CanActivate {
       context.getClass(),
     ]);
     if (Public) {
-      // 💡 See this condition
       return true;
     }
     const request = context.switchToHttp().getRequest();

@@ -30,15 +30,15 @@ export class AvaliacaoController {
   }
 
   //método auxiliar para o frontend
-  @Get(':id')
-  async findAllByProfessor(@Param('professorId', ParseIntPipe) id: number) {
-    return await this.avaliacaoService.findAllByProfessor(id);
-  }
+  // @Get(':id')
+  // async findAllByProfessor(@Param('professorId', ParseIntPipe) id: number) {
+  //   return await this.avaliacaoService.findAllByProfessor(id);
+  // }
 
-  @Get(':id')
-  async findAllByUsers(@Param('UsersId', ParseIntPipe) id: number) {
-    return await this.avaliacaoService.findAllByProfessor(id);
-  }
+  // @Get(':id')
+  // async findAllByUsers(@Param('UsersId', ParseIntPipe) id: number) {
+  //   return await this.avaliacaoService.findAllByProfessor(id);
+  // }
 
   @Get(':id')
   async findAvaliacao(@Param('id', ParseIntPipe) id: number) {
