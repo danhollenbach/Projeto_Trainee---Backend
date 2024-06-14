@@ -7,6 +7,8 @@ import { UsersToken } from './token/usersToken';
 import * as bcrypt from 'bcrypt';
 import { UsersPayload } from './token/usersPayloads';
 
+
+const conf = new ConfigService()
 @Injectable()
 export class AuthService {
   constructor(
@@ -16,6 +18,7 @@ export class AuthService {
   ) {}
 
   async login(loginRequestBody: LoginRequestBody): Promise<UsersToken> {
+
     const users = await this.validateUser(
       loginRequestBody.email,
       loginRequestBody.password,
@@ -27,10 +30,12 @@ export class AuthService {
 
     const payload: UsersPayload = { email: users.email, sub: users.id };
 
+    console.log(conf.get('JWT_SECRET'))
     const jwtToken = await this.jwtService.signAsync(payload, {
-      expiresIn: '1d',
-      secret: this.configService.get('JWT_SECRET'),
+      expiresIn: '2 days',
+      secret: process.env.JWT_KEY,
     });
+
 
     return {
       acess_token: jwtToken,
@@ -41,7 +46,7 @@ export class AuthService {
     const users = await this.userService.findByEmail(email);
 
     if (users) {
-      const isPasswordValid = await bcrypt.compare(password, users.password);
+      const isPasswordValid = password == users.password
       if (isPasswordValid) {
         return {
           ...users,

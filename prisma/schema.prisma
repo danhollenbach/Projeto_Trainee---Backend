@@ -44,6 +44,7 @@ model Disciplina {
 model Professor {
   id           Int          @id @default(autoincrement())
   name         String
+  foto         String?
   departamento String
   createdAt    DateTime     @default(now())
   updateAt     DateTime     @updatedAt
@@ -58,7 +59,7 @@ model Users {
   email        String        @unique
   name         String
   password     String
-  departamento String?
+  departamento String
   curso        String
   profilephoto String?
   createdAt    DateTime      @default(now())
